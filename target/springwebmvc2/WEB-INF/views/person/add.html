@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font-family: sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .container {
+      width: 88%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background-color: #16167d;
+      font-family: sans-serif;
+    }
+
+    .header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem 0;
+    }
+
+    .header__headline a {
+      font-size: 1.7rem;
+      color: white;
+    }
+
+    .navbar__list {
+      display: inline-block;
+      margin-left: 1rem;
+    }
+
+    .navbar__list a {
+      padding: 0.5rem 0.8rem;
+      border-radius: 0.3rem;
+
+      color: white;
+      transition: background-color 0.3s ease-in;
+    }
+    .navbar__list a:hover {
+      background-color: #4545dd;
+    }
+
+    .main__container {
+      padding: 2rem 0;
+      max-width: 40rem;
+    }
+
+    .main__person-details {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input {
+      margin-top: 0.5rem;
+      padding: 0.2rem 0;
+
+      border: none;
+      border-bottom: #16167d 3px solid;
+    }
+    .input:focus {
+      outline: none;
+    }
+
+    .input[type="text"] {
+      font-size: 1.1rem;
+    }
+    .input[type="email"] {
+      font-size: 1.1rem;
+    }
+
+    .error {
+      color: #af0000;
+      margin-top: 0.2rem;
+    }
+
+    .btn {
+      border-radius: 5px;
+      padding: 0 0.8rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn__submit {
+      background-color: rgb(8, 81, 8);
+      color: white;
+      font-size: 1rem;
+      padding: 0.7rem;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+    }
+  </style>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <h1 class="header__headline">
+            <a href="/"> PeopleController </a>
+          </h1>
+          <nav class="header__navbar navbar">
+            <li class="navbar__list"><a href="/">Home</a></li>
+            <li class="navbar__list"><a href="/add">Add</a></li>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="container main__container">
+      <form th:method="POST" th:action="@{/add}" th:object="${person}">
+        <div class="main__person-details">
+          <label for="name">Type name: </label>
+          <input
+            placeholder="Name..."
+            class="input"
+            type="text"
+            th:field="*{name}"
+            name="name"
+            id="name"
+          />
+          <div th:if="${#fields.hasErrors('name')}"
+               class="errors"
+               th:errors="*{name}"></div>
+        </div>
+
+        <div class="main__person-details">
+          <label for="email">Type email: </label>
+          <input
+            placeholder="Email..."
+            class="input"
+            type="text"
+            th:field="*{email}"
+            name="email"
+            id="email"
+          />
+          <div
+            class="error"
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+          ></div>
+        </div>
+
+        <div class="main__person-details">
+          <label for="age">Type age: </label>
+          <input
+            placeholder="0-150"
+            class="input"
+            type="number"
+            th:field="*{age}"
+            name="name"
+            id="age"
+          />
+          <div th:if="${#fields.hasErrors('age')}"
+               class="errors"
+               th:errors="*{age}"></div>
+        </div>
+
+        <input class="btn btn__submit" type="submit" value="Submit" />
+      </form>
+    </main>
+  </body>
+</html>

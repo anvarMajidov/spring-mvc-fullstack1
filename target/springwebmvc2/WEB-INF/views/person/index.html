@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font-family: sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .container {
+      width: 88%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background-color: #16167d;
+      font-family: sans-serif;
+    }
+
+    .header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem 0;
+    }
+    .header__headline a {
+      font-size: 1.7rem;
+      color: white;
+    }
+
+    .navbar__list {
+      display: inline-block;
+      margin-left: 1rem;
+    }
+
+    .navbar__list a {
+      padding: 0.5rem 0.8rem;
+      border-radius: 0.3rem;
+
+      color: white;
+      transition: background-color 0.3s ease-in;
+    }
+    .navbar__list a:hover {
+      background-color: #4545dd;
+    }
+
+    .main__people {
+      margin-top: 1em;
+      padding-left: 1em;
+      border-radius: 8px;
+      border-left: #16167d 8px solid;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-container {
+      display: flex;
+
+      height: 2.5rem;
+    }
+
+    .container__btn > .btn + .btn {
+      margin-right: 0.5rem;
+    }
+
+    .main__details-container {
+      display: flex;
+    }
+    .main__details-container + .main__details-container {
+      margin-top: 0.2rem;
+    }
+
+    .btn {
+      border-radius: 5px;
+      padding: 0 0.8rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-container > form {
+      display: flex;
+    }
+
+    .btn__delete {
+      background-color: #af0000;
+      color: white;
+      font-size: 1rem;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+    }
+
+    .btn__edit {
+      background-color: #16167d;
+      color: white;
+
+      height: 100%;
+
+      margin-right: 0.5rem;
+    }
+  </style>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <h1 class="header__headline">
+            <a href="/"> PeopleController </a>
+          </h1>
+          <nav class="header__navbar navbar">
+            <li class="navbar__list"><a href="/">Home</a></li>
+            <li class="navbar__list"><a href="/add">Add</a></li>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div class="main__people" th:each="person : ${people}">
+          <div class="person-info">
+            <div class="main__details-container">
+              <div class="detail-text"><p>Name:</p></div>
+              <div th:text="${person.getName()}"></div>
+            </div>
+            <div class="main__details-container">
+              <div class="detail-text"><p>Email:</p></div>
+              <div th:text="${person.getEmail()}"></div>
+            </div>
+            <div class="main__details-container">
+              <div class="detail-text"><p>Age:</p></div>
+              <div th:text="${person.getAge()}"></div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <a
+              class="btn btn__edit"
+              th:href="@{/{id}/edit(id=${person.getId()})}"
+              >Edit</a
+            >
+            <form
+              th:method="DELETE"
+              th:action="@{/{id}/delete(id=${person.getId()})}"
+            >
+              <input class="btn btn__delete" type="submit" value="Delete" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
