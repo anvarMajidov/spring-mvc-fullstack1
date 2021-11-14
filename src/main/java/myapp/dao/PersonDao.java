@@ -9,9 +9,9 @@ import java.util.List;
 
 @Component
 public class PersonDao {
-    private static final String URL = "jdbc:postgresql://localhost:5432/first_db";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "root@anvar";
+    private static final String URL = "jdbc:postgresql://ec2-44-198-236-169.compute-1.amazonaws.com:5432/d84dfgfu1lnnl4";
+    private static final String USERNAME = "uvaemfzyahkusw";
+    private static final String PASSWORD = "20af4fe94934f4c4a74eb87c7bb3b1ab492ed930fcbb38a9b400f9735fd379f2";
     private static Connection connection;
 
     static {
