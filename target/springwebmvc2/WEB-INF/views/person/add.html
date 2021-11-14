@@ -67,6 +67,12 @@
       max-width: 40rem;
     }
 
+    .main__inner {
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px 1px #b9d2ff;
+    }
+
     .main__person-details {
       font-size: 1.1rem;
       margin-bottom: 1rem;
@@ -79,8 +85,8 @@
       margin-top: 0.5rem;
       padding: 0.2rem 0;
 
+      background-color: #e8f0fe;
       border: none;
-      border-bottom: #16167d 3px solid;
     }
     .input:focus {
       outline: none;
@@ -95,7 +101,7 @@
 
     .error {
       color: #af0000;
-      margin-top: 0.2rem;
+      margin-top: 0.4rem;
     }
 
     .btn {
@@ -108,7 +114,7 @@
     }
 
     .btn__submit {
-      background-color: rgb(8, 81, 8);
+      background-color: #16167d;
       color: white;
       font-size: 1rem;
       padding: 0.7rem;
@@ -133,56 +139,63 @@
       </div>
     </header>
     <main class="container main__container">
-      <form th:method="POST" th:action="@{/add}" th:object="${person}">
-        <div class="main__person-details">
-          <label for="name">Type name: </label>
-          <input
-            placeholder="Name..."
-            class="input"
-            type="text"
-            th:field="*{name}"
-            name="name"
-            id="name"
-          />
-          <div th:if="${#fields.hasErrors('name')}"
-               class="errors"
-               th:errors="*{name}"></div>
-        </div>
+      <div class="main__inner">
+        <form th:method="POST" th:action="@{/add}" th:object="${person}">
+          <div class="main__person-details">
+            <label for="name">Type name: </label>
+            <input
+              placeholder="Name..."
+              class="input"
+              type="text"
+              th:field="*{name}"
+              name="name"
+              id="name"
+            />
+            <div
+              th:if="${#fields.hasErrors('name')}"
+              class="error"
+              th:errors="*{name}"
+            ></div>
+          </div>
 
-        <div class="main__person-details">
-          <label for="email">Type email: </label>
-          <input
-            placeholder="Email..."
-            class="input"
-            type="text"
-            th:field="*{email}"
-            name="email"
-            id="email"
-          />
-          <div
-            class="error"
-            th:if="${#fields.hasErrors('email')}"
-            th:errors="*{email}"
-          ></div>
-        </div>
+          <div class="main__person-details">
+            <label for="email">Type email: </label>
+            <input
+              placeholder="Email..."
+              class="input"
+              type="text"
+              th:field="*{email}"
+              name="email"
+              id="email"
+            />
+            <div
+              class="error"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"
+            ></div>
+          </div>
 
-        <div class="main__person-details">
-          <label for="age">Type age: </label>
-          <input
-            placeholder="0-150"
-            class="input"
-            type="number"
-            th:field="*{age}"
-            name="name"
-            id="age"
-          />
-          <div th:if="${#fields.hasErrors('age')}"
-               class="errors"
-               th:errors="*{age}"></div>
-        </div>
+          <div class="main__person-details">
+            <label for="age">Type age:</label>
+            <input
+              style="font-size: 1.1rem"
+              placeholder="0-150"
+              class="input"
+              type="number"
+              th:field="*{age}"
+              name="name"
+              id="age"
+            />
+            <div
+              th:if="${#fields.hasErrors('age')}"
+              class="error"
+              th:errors="*{age}"
+            ></div>
+          </div>
 
-        <input class="btn btn__submit" type="submit" value="Submit" />
-      </form>
+          <input class="btn btn__submit" type="submit" value="Submit" />
+        </form>
+      </div>
     </main>
   </body>
 </html>

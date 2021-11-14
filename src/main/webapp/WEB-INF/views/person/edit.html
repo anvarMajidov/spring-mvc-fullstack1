@@ -67,6 +67,12 @@
       max-width: 40rem;
     }
 
+    .main__inner {
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px 1px #b9d2ff;
+    }
+
     .main__person-details {
       font-size: 1.1rem;
       margin-bottom: 1rem;
@@ -77,10 +83,10 @@
 
     .input {
       margin-top: 0.5rem;
-      padding: 0.2rem 0;
+      padding: 0.2rem 0.5rem;
 
+      background-color: #e8f0fe;
       border: none;
-      border-bottom: #16167d 3px solid;
     }
     .input:focus {
       outline: none;
@@ -107,7 +113,7 @@
     }
 
     .btn__submit {
-      background-color: rgb(8, 81, 8);
+      background-color: #16167d;
       color: white;
       font-size: 1rem;
       padding: 0.7rem;
@@ -132,60 +138,63 @@
       </div>
     </header>
     <main class="container main__container">
-      <form
-        th:method="PATCH"
-        th:action="@{/edit/{id}(id=${person.getId()})}"
-        th:object="${person}"
-      >
-        <div class="main__person-details">
-          <label for="name">Type new name: </label>
-          <input
-            class="input"
-            type="text"
-            th:field="*{name}"
-            id="name"
-            name="name"
-          />
-          <div
-            class="error"
-            th:if="${#fields.hasErrors('name')}"
-            th:errors="*{name}"
-          ></div>
-        </div>
+      <div class="main__inner">
+        <form
+          th:method="PATCH"
+          th:action="@{/edit/{id}(id=${person.getId()})}"
+          th:object="${person}"
+        >
+          <div class="main__person-details">
+            <label for="name">Type new name: </label>
+            <input
+              class="input"
+              type="text"
+              th:field="*{name}"
+              id="name"
+              name="name"
+            />
+            <div
+              class="error"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"
+            ></div>
+          </div>
 
-        <div class="main__person-details">
-          <label for="email">Type new email: </label>
-          <input
-            class="input"
-            type="email"
-            th:field="*{email}"
-            id="email"
-            name="email"
-          />
-          <div
-            class="error"
-            th:if="${#fields.hasErrors('email')}"
-            th:errors="*{email}"
-          ></div>
-        </div>
+          <div class="main__person-details">
+            <label for="email">Type new email: </label>
+            <input
+              class="input"
+              type="email"
+              th:field="*{email}"
+              id="email"
+              name="email"
+            />
+            <div
+              class="error"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"
+            ></div>
+          </div>
 
-        <div class="main__person-details">
-          <label for="age">Type new age: </label>
-          <input
-            class="input"
-            type="text"
-            th:field="*{age}"
-            id="age"
-            name="age"
-          />
-          <div
-            class="error"
-            th:if="${#fields.hasErrors('age')}"
-            th:errors="*{age}"
-          ></div>
-        </div>
-        <input class="btn btn__submit" type="submit" value="Submit" />
-      </form>
+          <div class="main__person-details">
+            <label for="age">Type new age: </label>
+            <input
+              style="font-size: 1.1rem"
+              class="input"
+              type="text"
+              th:field="*{age}"
+              id="age"
+              name="age"
+            />
+            <div
+              class="error"
+              th:if="${#fields.hasErrors('age')}"
+              th:errors="*{age}"
+            ></div>
+          </div>
+          <input class="btn btn__submit" type="submit" value="Submit" />
+        </form>
+      </div>
     </main>
   </body>
 </html>
