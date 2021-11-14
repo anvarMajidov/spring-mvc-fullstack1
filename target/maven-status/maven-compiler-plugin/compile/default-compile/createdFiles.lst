@@ -1,0 +1,5 @@
+myapp\dao\PersonDao.class
+myapp\config\SpringConfig.class
+myapp\models\Person.class
+myapp\config\MySpringAppDispatchInitializer.class
+myapp\controllers\PersonController.class
