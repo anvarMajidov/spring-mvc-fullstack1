@@ -62,10 +62,4 @@ public class PersonController {
         personDao.deletePerson(id);
         return "redirect:/";
     }
-
-    @GetMapping("/getNumbers")
-    @ResponseBody
-    public List<Integer> getNumbers() {
-        return Arrays.asList(2, 10, 2);
-    }
 }
